@@ -18,8 +18,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 let corsOptions = {
-    origin: "*",
-    method: " *"
+    origin: "*", // your react dev url
+    methods: " *"
 }
 
 app.use(cors(corsOptions))
