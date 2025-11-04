@@ -4,7 +4,7 @@ import cors from "cors"
 import "./database/conn.js"
 
 import { userRouter } from "./routers/userRouter.js"
-import { companyRouter } from "./routers/companyRoutes.js"
+// import { companyRouter } from "./routers/companyRouter.js"
 // import { adminRouter } from "./routers/adminRouter.js"
 
 dotenv.config({ path: "./config.env" })
@@ -17,10 +17,10 @@ app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-let corsOptions = {
-    origin: "*", // your react dev url
-    methods: " *"
-}
+const corsOptions = {
+  origin: "*",
+  methods: "*",
+};
 
 app.use(cors(corsOptions))
 
@@ -28,7 +28,7 @@ app.use(cors(corsOptions))
 
 app.use("/user", userRouter)
 
-app.use("/company", companyRouter)
+// app.use("/company", companyRouter)
 
 // app.use("/admin", adminRouter)
 

@@ -25,8 +25,8 @@ dist-ssr
 
 #client 
 
-/client / node_modules
-/client / package-lock.json
+client /node_modules
+client /package-lock.json
 
 #server 
 server/node_modules
