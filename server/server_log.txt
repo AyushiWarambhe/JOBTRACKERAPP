@@ -9,3 +9,7 @@
 [8244] 31 Oct 21:50:20.610 # Server started, Redis version 3.2.100
 [8244] 31 Oct 21:50:20.610 * DB loaded from disk: 0.000 seconds
 [8244] 31 Oct 21:50:20.610 * The server is now ready to accept connections on port 6379
+[4280] 06 Nov 14:25:00.988 * Redis 3.2.100 (00000000/0) 64 bit, standalone mode, port 6379, pid 4280 ready to start.
+[4280] 06 Nov 14:25:01.301 # Server started, Redis version 3.2.100
+[4280] 06 Nov 14:25:01.703 * DB loaded from disk: 0.408 seconds
+[4280] 06 Nov 14:25:01.710 * The server is now ready to accept connections on port 6379

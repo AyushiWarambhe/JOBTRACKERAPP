@@ -224,10 +224,5 @@ const handleCompanyOTPForPasswordReset = async (req, res) => {
 
 //  Exports
 export {
-    test,
-    handleCompanyRegister,
-    handleCompanyOTPVerification,
-    handleCompanyLogin,
-    handleCompanyPasswordResetRequest,
-    handleCompanyOTPForPasswordReset
+    test, handleCompanyRegister, handleCompanyOTPVerification, handleCompanyLogin,handleCompanyPasswordResetRequest,handleCompanyOTPForPasswordReset 
 }
