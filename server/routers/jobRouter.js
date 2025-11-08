@@ -2,6 +2,7 @@ import express from "express"
 
 import { createJob, getJobData, handleJobAction, handleJobApplication } from "../controllers/jobController.js"
 import { AuthUser } from "../middlewares/AuthUser.js"
+import { authCompany } from "../middlewares/AuthCompany.js"
 
 const jobRouter = express.Router()
 
