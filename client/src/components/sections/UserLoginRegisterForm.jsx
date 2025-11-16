@@ -300,7 +300,7 @@ const UserLoginRegisterForm = () => {
           <div className={`slider ${openFormLogin ? "login" : "register"}`}>
             <div className='text-data h-full flex flex-col justify-end gap-2 text-light p-6'>
               <span className='font-bold text-2xl'>Welcome</span>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.?</p>
+              <p>ALways stay one step closer !</p>
               <span className='bg-primary p-2 font-bold w-fit rounded'>Get 20% Off</span>
             </div>
           </div>

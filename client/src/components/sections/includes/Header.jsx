@@ -24,7 +24,7 @@ const Header = () => {
                     <div className='logo flex gap-2 items-center cursor-pointer' onClick={() => navigate("/")}>
                         <MdWorkspacesOutline size={30} />
                         <span className='bg-dark text-primary text-[1.25rem] font-bold'>
-                            JOB CHAIYE ?
+                            JOB TRACKER ! 
                         </span>
                     </div>
                     <div className='search-bar grow'>
