@@ -46,3 +46,43 @@ export const requestUserProfile = async (token) => {
         throw (err)
     }
 }
+
+export const userProfilePicture = async (token, formData) => {
+    try {
+        const result = await axios.post(
+            `${baseUrl}/upload-file/profile_picture`,
+            formData,
+            {
+                headers: {
+                    authorization: token
+                    // DO NOT add Content-Type manually
+                }
+            }
+        );
+
+        return result.data;
+
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const requestOTPForPasswordReset = async (email) => {
+    try {
+        console.log("reset passord for ", email)
+        const result = await axios.post(`${baseUrl}/password-reset-request`, { email });
+        return result
+    } catch (err) {
+        throw err
+    }
+}
+
+export const requestUserEmailOtpVerificationPasswordReset = async (data) => {
+    console.log(data)
+    try {
+        const result = await axios.post(`${baseUrl}/verify-reset-password-request`, data);
+        return result
+    } catch (err) {
+        throw err
+    }
+}

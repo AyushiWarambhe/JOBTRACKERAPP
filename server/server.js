@@ -31,6 +31,8 @@ app.use("/user", userRouter)
 
 app.use("/job", jobRouter)
 
+app.use(express.static("uploads"))
+
 // app.use("/company", companyRouter)
 
 // app.use("/admin", adminRouter)
