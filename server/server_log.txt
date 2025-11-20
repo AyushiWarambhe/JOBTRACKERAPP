@@ -35,3 +35,5 @@
 [4076] 19 Nov 22:47:18.846 * Background saving terminated with success
 [4076] 19 Nov 23:02:19.080 * 1 changes in 900 seconds. Saving...
 [4076] 19 Nov 23:02:19.116 * Background saving started by pid 4268
+[4076] 19 Nov 23:02:19.548 # fork operation complete
+[4076] 19 Nov 23:02:19.549 * Background saving terminated with success
