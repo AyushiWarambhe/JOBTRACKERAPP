@@ -1,5 +1,6 @@
 import multer from "multer"
 import path from "path"
+import fs from "fs"
 
 // Define storage logic
 const storage = multer.diskStorage({
@@ -13,6 +14,11 @@ const storage = multer.diskStorage({
 
         // Define destination based on type
         const uploadPath = path.join("uploads", fileType === "resume" ? "resumes" : "profile_pictures")
+
+          //  Create folder if not exists
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
+        }
 
         // uploads/profile_picture 
 
