@@ -1,68 +1,83 @@
 import mongoose from "mongoose";
-const jobRequirementsObject = {
-    type: {
-        type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
-    },
-    exprience: {
-        type: String,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    },
-    postDate: {
-        type: Date,
-        default: Date.now(),
-        required: true
-    },
-    offeredSalary: {
-        type: Number,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    }
-}
 
-const jobSchema = mongoose.Schema({
+/* ---------------- JOB REQUIREMENTS SUB SCHEMA ---------------- */
+
+const jobRequirementsSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+  },
+
+  category: {
+    type: String,
+    required: true,
+  },
+
+  exprience: {
+    type: String,
+    required: true,
+  },
+
+  location: {
+    type: String,
+    required: true,
+  },
+
+  offeredSalary: {
+    type: Number,
+    required: true,
+  },
+
+  description: {
+    type: String,
+    required: true,
+  },
+
+  postDate: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+/* ---------------- MAIN JOB SCHEMA ---------------- */
+
+const jobSchema = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
+
     jobCreatedBy: {
-        type: String,
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "companies",
+      required: true,
     },
+
     jobRequirements: {
-        type: Object,
-        default: jobRequirementsObject
+      type: jobRequirementsSchema,
+      required: true,
     },
-    applications: {
-        type: Array,
-        default: [],
-        required: false
-    },
+
+    applications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
+
     closed: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
+
     maxApplications: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
-    timeStamp: {
-        type: Date,
-        default: Date.now()
-    }
-})
+  },
+  { timestamps: true } // auto createdAt & updatedAt
+);
 
-let jobModel = new mongoose.model("jobs", jobSchema)
-
-export { jobModel }
+const jobModel = mongoose.model("jobs", jobSchema);
+export { jobModel };

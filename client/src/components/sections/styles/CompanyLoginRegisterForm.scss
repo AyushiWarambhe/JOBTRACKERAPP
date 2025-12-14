@@ -1,0 +1,78 @@
+.login-register-form {
+    .content {
+        width: 1300px;
+
+        // background-color: red;
+        margin: auto;
+        padding: 3rem;
+
+        .login-register-section {
+            width: 100%;
+            height: 90%;
+            background-color: white;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+
+            .register {
+            }
+
+            .login {
+            }
+
+            .slider {
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(0deg,rgba(var(--dark), .25), rgba(var(--dark), .45)), url("../../../assets/media/pexels-namrata-garad-2156281395-34934277.jpg");
+                background-position: center center;
+                background-size: cover;
+                position: absolute;
+                left: 50%;
+                transition: all 0.5s ease;
+
+                &.login {
+                    left: 0%;
+                }
+
+                &.register {
+                    left: 50%;
+                }
+            }
+
+        }
+    }
+}
+
+.input {
+  @apply bg-white border border-gray-300 text-dark text-sm rounded-lg 
+         focus:ring-primary focus:border-primary block w-full p-2.5;
+}
+
+.btn-primary {
+  @apply bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-2 rounded transition-all;
+}
+
+.btn-secondary {
+  @apply bg-gray-300 hover:bg-gray-400 px-6 py-2 rounded transition-all;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-2 rounded transition-all;
+}
+
+
+@keyframes stepFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-step {
+  animation: stepFade 0.35s ease-out;
+}

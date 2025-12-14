@@ -1,6 +1,89 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+// Sub-documents (use mongoose.Schema)
+const addressSchema = new mongoose.Schema({
+    street: { type: String, default: "" },
+    city: { type: String, default: "" },
+    state: { type: String, default: "" },
+    country: { type: String, default: "" },
+    pincode: { type: String, default: "" },
+}, { _id: false });
+
+const emailSchema = new mongoose.Schema({
+    userEmail: { type: String, required: true },
+    verified: { type: Boolean, default: false },
+}, { _id: false });
+
+// Main User Schema
+const userSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+
+    email: {
+        type: emailSchema,
+        required: true,
+    },
+
+    password: { type: String, required: true },
+
+    phone: { type: String, required: true },
+
+    address: {
+        type: addressSchema,
+        default: {},
+    },
+
+    bio: { type: String },
+
+    dob: {
+        type: String,   // keep String if you prefer, or change to: type: Date
+        required: true,
+    },
+
+    qualifications: {
+        type: String,
+        default: "",
+    },
+
+    document: {
+        type: String,
+        default: ""
+    },
+
+    profile_picture: {
+        type: String,
+        default: "",
+    },
+
+    appliedJobs: {
+        type: [mongoose.Schema.Types.ObjectId],
+        default: [],
+        ref: "jobs"
+    },
+
+    timeStamp: {
+        type: Date,
+        default: Date.now,
+    },
+});
+
+// Password hashing
+userSchema.pre("save", async function (next) {
+    try {
+        if (!this.isModified("password")) return next();
+        this.password = await bcrypt.hash(this.password, 10);
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
+export const userModel = mongoose.model("users", userSchema);
+
+
+{/*import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
 // Sub-documents
 const addressSchema = {
     street: { type: String, default: "" },
@@ -37,6 +120,9 @@ const userSchema = new mongoose.Schema({
         type: addressSchema,
         default: {},
     },
+    bio: {
+        type: String
+    },
     dob: {
         type: String,
         required: true,
@@ -45,17 +131,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    documents: {
-        type: [String],
-        default: [],
+    document: {
+        type: String,
+        default: ""
     },
     profile_picture: {
         type: String,
         default: "",
     },
     appliedJobs: {
-        type: [String],
+        type: [mongoose.Schema.Types.ObjectId],
         default: [],
+        ref: "jobs"
     },
     timeStamp: {
         type: Date,
@@ -75,3 +162,4 @@ userSchema.pre("save", async function (next) {
 });
 
 export const userModel = mongoose.model("users", userSchema);
+*/}

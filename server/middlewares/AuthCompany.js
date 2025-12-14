@@ -1,29 +1,20 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import { companyModel } from "../models/companySchema.js";
 
-dotenv.config({ path: "./config.env" });
+export const AuthCompany = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
 
-//  Middleware to authenticate company using JWT
-export const authCompany = async (req, res, next) => {
-    try {
-        // Get token from Authorization header → "Bearer <token>"
-        const authHeader = req.headers.authorization;
+    if (!token) return res.status(401).json({ message: "No token provided" });
 
-        if (!authHeader || !authHeader.startsWith("Bearer ")) {
-            return res.status(401).json({ message: "Access Denied! Token not provided." });
-        }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        const token = authHeader.split(" ")[1];
+    const company = await companyModel.findById(decoded.id).select("-password");
+    if (!company) return res.status(401).json({ message: "Unauthorized company" });
 
-        // Verify token using secret key
-        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-
-        // Attach company info to request for next middlewares/controllers
-        req.company = decoded;
-
-        next(); //  Proceed to next step
-    } catch (err) {
-        console.error("AuthCompany Error:", err);
-        return res.status(401).json({ message: "Invalid or expired token!", error: err.message });
-    }
+    req.company = company;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
 };

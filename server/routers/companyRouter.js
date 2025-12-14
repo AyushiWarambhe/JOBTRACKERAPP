@@ -1,25 +1,29 @@
-import express from "express"
-import { 
-    test, 
-    handleCompanyRegister, 
-    handleCompanyOTPVerification, 
-    handleCompanyLogin, 
-    handleCompanyPasswordResetRequest, 
-    handleCompanyOTPForPasswordReset 
-} from "../controllers/companyController.js"
+import express from "express";
+import {
+  registerCompany,
+  loginCompany,
+  fetchCompanyProfile,
+  uploadCompanyFile,
+  deleteCompanyDocument,
+} from "../controllers/companyController.js";
 
-let companyRouter = express.Router()
+import { AuthCompany } from "../middlewares/AuthCompany.js";
+import { upload } from "../config/multerConfig.js";
 
-companyRouter.get("/test", test)
+const companyRouter = express.Router();
 
-companyRouter.post("/register", handleCompanyRegister)
+companyRouter.post("/register", registerCompany);
+companyRouter.post("/login", loginCompany);
 
-companyRouter.post("/verify-otp", handleCompanyOTPVerification)
+companyRouter.get("/profile", AuthCompany, fetchCompanyProfile);
 
-companyRouter.post("/login", handleCompanyLogin)
+companyRouter.post(
+  "/upload-file/:file_type",
+  AuthCompany,
+  upload.single("file"),
+  uploadCompanyFile
+);
 
-companyRouter.post("/password-reset-request", handleCompanyPasswordResetRequest)
+companyRouter.delete("/delete-document", AuthCompany, deleteCompanyDocument);
 
-companyRouter.post("/verify-reset-password-request", handleCompanyOTPForPasswordReset)
-
-export { companyRouter }
+export { companyRouter };

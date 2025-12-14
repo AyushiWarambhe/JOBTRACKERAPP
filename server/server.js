@@ -18,12 +18,20 @@ app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const corsOptions = {
-  origin: "*",
-  methods: "*",
-};
+//const corsOptions = {
+//  origin: "*",
+//  methods: "*",
+//};
 
-app.use(cors(corsOptions))
+//app.use(cors(corsOptions))
+
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 
 // routers
 
